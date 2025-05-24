@@ -27,7 +27,7 @@ class SuperCar:
 
 
 
-corvette = SuperCar("Corvette", "Z06 3LZ Performance Targa", 660)
+corvette = SuperCar("Corvette", "Z06 3LZ Performance Targa", 670)
 lambo = SuperCar("Lamborghini", "Huracan STO", 631)
 McLaren = SuperCar("McLaren", "765LT", 752)
 
