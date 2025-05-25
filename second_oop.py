@@ -22,25 +22,58 @@ class Boutique:
 
     def show_catalog(self):
         print(f"Catalog of the boutique {self.name}:")
+        if not self.inventory:
+            print("Not items available.")
         for item in self.inventory:
             print(f" - {item}")
 
+
     def find_by_category(self, category):
         results = [item for item in self.inventory if item.category.lower() == category.lower()]
-        print(f"Category clothes of '{category}'")
-        for item in results:
-            print(f" - {item}")
+        print(f"Items in category '{category}'")
+        if results:
+            for item in results:
+                print(f" - {item}")
+        else:
+            print("No items found in this category.")
 
 
 
+def main():
+    boutique = Boutique("Fashion Loft")
+
+    while True:
+        print("\n ====== MENU ======")
+        print("1. Add clothing item")
+        print("2. Show catalog")
+        print("3. Find by category")
+        print("4. Exit")
+        choice = input("Choose an option (1-4)")
 
 
-boutique = Boutique("Fashion Loft")
+        if choice == "1":
+            name = input("Name: ")
+            size = input("Size: ")
+            price = float(input("Price: "))
+            category = input("Category: ")
+            item = ClothingItem(name, size, price, category)
+            boutique.add_item(item)
 
-boutique.add_item(ClothingItem("Jorts", "XL", 40, "Shorts"))
-boutique.add_item(ClothingItem("Shirt", "L", 39.99, "Shirts"))
-boutique.add_item(ClothingItem("Shoes Private", "45", 120, "Shoes"))
+        elif choice == "2":
+            boutique.show_catalog()
+
+        elif choice == "3":
+            category = input("Enter category to search: ")
+            boutique.find_by_category(category)
+
+        elif choice == "4":
+            print("👋 Exiting boutique. See you soon, bro!")
+            break
+
+        else:
+            print("❌ Invalid choice. Try again!")
 
 
-boutique.show_catalog()
-boutique.find_by_category("Shorts")
+if __name__ == "__main__":
+    main()
+
